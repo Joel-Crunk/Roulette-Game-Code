@@ -10,6 +10,7 @@ namespace RouletteGameCode
     {
         static void Main(string[] args)
         {
+            new Game().Run();
         }
     }
 }
