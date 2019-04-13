@@ -67,9 +67,9 @@ namespace RouletteGameCode
                     bet = int.Parse(Console.ReadLine());
                 }
 
-
-                int betAmount = BetAmount(ref money);
-
+                    
+                    int betAmount = BetAmount(ref money);
+                 
                 //int deal = Deal();
 
                 money = NumWin(money, bet, betAmount, deal);
@@ -91,6 +91,8 @@ namespace RouletteGameCode
             
 
         }
+
+        
 
         internal void NewBalance(double money)
         {
@@ -119,10 +121,23 @@ namespace RouletteGameCode
 
         private static int BetAmount(ref double money)
         {
-            Console.Write("How much do you want to bet? ");
-            int betAmount = int.Parse(Console.ReadLine());
-            money -= betAmount;
-            return betAmount;
+
+            do
+            {
+                Console.Write("How much do you want to bet? ");
+                int betAmount = int.Parse(Console.ReadLine());
+
+                if (money < 1 || betAmount > money || betAmount < 1)
+                {
+                    Console.WriteLine("Invaled amount");
+                    continue;
+                }
+                    money -= betAmount;
+
+                    return betAmount;
+
+            } while (true);
+           
         }
 
     }
