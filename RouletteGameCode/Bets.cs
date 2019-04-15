@@ -24,75 +24,79 @@ namespace RouletteGameCode
            
             do
             {
-                Console.WriteLine("Continue? Y or N");
-                ConsoleKey key = Console.ReadKey(true).Key;
-                if (key == ConsoleKey.N)
+                int deal = Deal();
+                foreach (var item in rednum)
                 {
-                    continueGame = false;
+                    if (deal == item)
+                    {
+                        colorWinRed = true;
+                    }
                 }
-                else
+                int betAmount = BetAmount(ref money);
+
+                //what type bet?
+                Console.WriteLine("Choose \n1. colors \n2. numbers \n3. split");
+                int betType = int.Parse(Console.ReadLine());
+
+                int color = 0;
+
+
+
+                if (betType == 1)
                 {
-
-          
-
-                    int deal = Deal();
-                    foreach (var item in rednum)
-                    {
-                        if (deal == item)
-                        {
-                            colorWinRed = true;
-                        }
-                    }
+                    Console.WriteLine("1. Red \n2. Black");
+                    color = int.Parse(Console.ReadLine());
 
 
-                    //what type bet?
-                    Console.WriteLine("Choose \n1. colors \n2. numbers ");
-                    int betType = int.Parse(Console.ReadLine());
-
-                    int color = 0;
-
-
-
-                    if (betType == 1)
-                    {
-                        Console.WriteLine("1. Red \n2. Black");
-                        color = int.Parse(Console.ReadLine());
-
-
-                    }
-                    int bet = 39;
-                    if (betType == 2)
-                    {
-                        Console.Write("Choose a number 1 - 35 ");
-                        bet = int.Parse(Console.ReadLine());
-                    }
-
-                    
-                    int betAmount = BetAmount(ref money);
-                 
-                
-
-                    money = NumWin(money, bet, betAmount, deal);
-
-                    if (color == 1 && colorWinRed == true)
-                    {
-                        Console.WriteLine("You win Red");
-                        money += betAmount * 2;
-                    }
-                    if (color == 2 && colorWinRed == false)
-                    {
-                        Console.WriteLine("You win Black");
-                        money += betAmount * 2;
-                    }
-
-                    NewBalance(money);
                 }
+                int bet = 39;
+                if (betType == 2)
+                {
+                    Console.Write("Choose a number 1 - 35 ");
+                    bet = int.Parse(Console.ReadLine());
+                }
+                if (betType == 3)
+                {
+                    Console.WriteLine(  "Which split do you want? ");
+                    int splitBet = int.Parse(Console.ReadLine());
+                }
+
+                money = NumWin(money, bet, betAmount, deal);
+
+                if (color == 1 && colorWinRed == true)
+                {
+                    Console.WriteLine("You win Red");
+
+                    money += betAmount * 2;
+                }
+                if (color == 2 && colorWinRed == false)
+                {
+                    Console.WriteLine("You win Black");
+
+                    money += betAmount * 2;
+                }
+
+                NewBalance(money);
+
+                continueGame = ContinueGame(continueGame);
+
             } while (continueGame == true);
             
 
         }
 
-        
+        private static bool ContinueGame(bool continueGame)
+        {
+            Console.WriteLine("Continue? Y or N");
+            ConsoleKey key = Console.ReadKey(true).Key;
+            if (key == ConsoleKey.N)
+            {
+                continueGame = false;
+            }
+
+            return continueGame;
+        }
+
 
         internal void NewBalance(double money)
         {
