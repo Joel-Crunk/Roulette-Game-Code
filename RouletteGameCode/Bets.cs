@@ -35,58 +35,58 @@ namespace RouletteGameCode
 
           
 
-                int deal = Deal();
-                foreach (var item in rednum)
-                {
-                    if (deal == item)
+                    int deal = Deal();
+                    foreach (var item in rednum)
                     {
-                        colorWinRed = true;
+                        if (deal == item)
+                        {
+                            colorWinRed = true;
+                        }
                     }
-                }
 
 
-                //what type bet?
-                Console.WriteLine("Choose \n1. colors \n2. numbers ");
-                int betType = int.Parse(Console.ReadLine());
+                    //what type bet?
+                    Console.WriteLine("Choose \n1. colors \n2. numbers ");
+                    int betType = int.Parse(Console.ReadLine());
 
-                int color = 0;
-
-
-
-                if (betType == 1)
-                {
-                    Console.WriteLine("1. Red \n2. Black");
-                    color = int.Parse(Console.ReadLine());
+                    int color = 0;
 
 
-                }
-                int bet = 39;
-                if (betType == 2)
-                {
-                    Console.Write("Choose a number 1 - 35 ");
-                    bet = int.Parse(Console.ReadLine());
-                }
+
+                    if (betType == 1)
+                    {
+                        Console.WriteLine("1. Red \n2. Black");
+                        color = int.Parse(Console.ReadLine());
+
+
+                    }
+                    int bet = 39;
+                    if (betType == 2)
+                    {
+                        Console.Write("Choose a number 1 - 35 ");
+                        bet = int.Parse(Console.ReadLine());
+                    }
 
                     
                     int betAmount = BetAmount(ref money);
                  
-                //int deal = Deal();
+                
 
-                money = NumWin(money, bet, betAmount, deal);
+                    money = NumWin(money, bet, betAmount, deal);
 
-                if (color == 1 && colorWinRed == true)
-                {
-                    Console.WriteLine("You win Red");
-                    money += betAmount * 2;
-                }
-                if (color == 2 && colorWinRed == false)
-                {
-                    Console.WriteLine("You win Black");
-                    money += betAmount * 2;
-                }
-
-                NewBalance(money);
+                    if (color == 1 && colorWinRed == true)
+                    {
+                        Console.WriteLine("You win Red");
+                        money += betAmount * 2;
                     }
+                    if (color == 2 && colorWinRed == false)
+                    {
+                        Console.WriteLine("You win Black");
+                        money += betAmount * 2;
+                    }
+
+                    NewBalance(money);
+                }
             } while (continueGame == true);
             
 
@@ -104,7 +104,7 @@ namespace RouletteGameCode
         private int Deal()
         {
             int deal = random.Next(0, 38);
-            Console.WriteLine(deal);
+            
             return deal;
         }
 
