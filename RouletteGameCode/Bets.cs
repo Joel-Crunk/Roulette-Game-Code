@@ -87,12 +87,14 @@ namespace RouletteGameCode
 
         private static bool ContinueGame(bool continueGame)
         {
-            Console.WriteLine("Continue? Y or N");
+
+            Console.WriteLine("Another bet? Y or N");
             ConsoleKey key = Console.ReadKey(true).Key;
-            if (key == ConsoleKey.N)
-            {
-                continueGame = false;
-            }
+
+                   if (key == ConsoleKey.N)
+                   {
+                       continueGame = false;
+                   }
 
             return continueGame;
         }

@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bets.cs" />
+    <Compile Include="Catch.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameTitle.cs" />
     <Compile Include="Money.cs" />
